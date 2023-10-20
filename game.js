@@ -1,3 +1,12 @@
+const okBtn = document.getElementById("okBtn").addEventListener('click',()=>{
+    window.location.href='gameover.html'
+});
+const bgm = new Audio("sounds/bgm1.mp3");
+bgm.play();
+bgm.loop = true;
+
+
+
 function rand(max) {
     return Math.floor(Math.random() * max);
 }
@@ -35,14 +44,20 @@ function changeBrightness(factor, sprite) {
 function displayVictoryMess(moves) {
     document.getElementById("moves").innerHTML = "You Moved " + moves + " Steps.";
     toggleVisablity("Message-Container");
+    localStorage.setItem('moves',moves)
+
 }
 
 function toggleVisablity(id) {
+    
+const diffSelect =document.getElementById("diffSelect")
+localStorage.setItem('mode',diffSelect.value)
     if (document.getElementById(id).style.visibility == "visible") {
         document.getElementById(id).style.visibility = "hidden";
     } else {
         document.getElementById(id).style.visibility = "visible";
     }
+
 }
 
 function Maze(Width, Height) {
@@ -499,7 +514,6 @@ var finishSprite;
 var maze, draw, player;
 var cellSize;
 var difficulty;
-// sprite.src = 'media/sprite.png';
 
 window.onload = function () {
     let viewWidth = $("#view").width();
@@ -565,6 +579,7 @@ function makeMaze() {
         document.getElementById("mazeContainer").style.opacity = "100";
     }
 }
+
 
 
 
